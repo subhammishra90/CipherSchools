@@ -1,0 +1,127 @@
+@import './variables';
+@import './mixins';
+
+.assignment-list {
+    &__title {
+        font-size: $font-size-xl;
+        margin-bottom: $spacing-md;
+        color: $text-color;
+        text-align: center;
+
+        @include respond-to(tablet) {
+            font-size: $font-size-xxl;
+            margin-bottom: $spacing-lg;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-md;
+
+        @include respond-to(tablet) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: $spacing-lg;
+        }
+
+        @include respond-to(desktop) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__loading,
+    &__error,
+    &__empty {
+        text-align: center;
+        padding: $spacing-xl;
+        font-size: $font-size-lg;
+        color: $text-light;
+    }
+
+    &__error {
+        color: $error-color;
+    }
+}
+
+.assignment-card {
+    @include card;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: $spacing-sm;
+        gap: $spacing-sm;
+    }
+
+    &__title {
+        font-size: $font-size-lg;
+        color: $text-color;
+        flex: 1;
+        margin: 0;
+    }
+
+    &__difficulty {
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-xs;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        @include respond-to(tablet) {
+            font-size: $font-size-sm;
+            padding: $spacing-xs $spacing-md;
+        }
+
+        &--easy {
+            background-color: lighten($success-color, 40%);
+            color: darken($success-color, 20%);
+        }
+
+        &--medium {
+            background-color: lighten($warning-color, 40%);
+            color: darken($warning-color, 20%);
+        }
+
+        &--hard {
+            background-color: lighten($error-color, 40%);
+            color: darken($error-color, 20%);
+        }
+    }
+
+    &__description {
+        color: $text-light;
+        font-size: $font-size-base;
+        margin-bottom: $spacing-md;
+        flex: 1;
+        line-height: 1.6;
+    }
+
+    &__footer {
+        margin-top: auto;
+    }
+
+    &__button {
+        @include button-base;
+        width: 100%;
+        background-color: $primary-color;
+        color: white;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+}
